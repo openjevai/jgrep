@@ -49,7 +49,8 @@ def env(monkeypatch, tmp_path):
     monkeypatch.setenv("XDG_CONFIG_HOME", str(tmp_path / "config"))
     for name in ("TYPESAFE_API_KEY", "JEV_API", "JEV_MODEL", "JEV_URL", "JEV_BUDGET",
                  "JEV_GATEWAY_URL", "JEV_GATEWAY_API_KEY", "JEV_PRICE_PER_MTOK",
-                 "JEV_DIFFUSIONGEMMA_URL", "JEV_DIFFUSIONGEMMA_API_KEY", "JEV_LAYA_URL", "JEV_LAYA_API_KEY"):
+                 "JEV_DIFFUSIONGEMMA_URL", "JEV_DIFFUSIONGEMMA_API_KEY", "JEV_LAYA_URL", "JEV_LAYA_API_KEY",
+                 "OPENJEV_API_KEY"):
         monkeypatch.delenv(name, raising=False)
 
 

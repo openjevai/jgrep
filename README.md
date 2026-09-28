@@ -19,6 +19,8 @@ thousandth of a cent, which is fast and cheap enough to sit in a pipe. jgrep rea
 they arrive, judges them concurrently and prints matches in input order, so it works on
 `tail -f` as well as on files.
 
+> **OpenJEV support:** Jev is built by [TypeSafe](https://typesafe.ai). This fork keeps TypeSafe as the default and adds optional support for [OpenJEV](https://openjev.sh), a free community gateway to the same Jev model — set `OPENJEV_API_KEY` (or `JEV_PROVIDER=openjev`) to use it. Original project: https://github.com/keltokhy/jgrep by @keltokhy.
+
 Measured on 994 Hacker News titles: 4.6 seconds and $0.012 for one description, and the same
 time for three descriptions at once.
 
@@ -32,16 +34,17 @@ uv tool upgrade jev-grep        # upgrade an existing installation
 For Go and C function parsing, install the optional syntax parsers: `uv tool install 'jev-grep[code]'`.
 Python function parsing and unified diffs work with the base package.
 
-jgrep needs a key for one of two APIs, or for a gateway of your own; a server on your own machine
+jgrep needs a key for one of three APIs, or for a gateway of your own; a server on your own machine
 needs none (both below). With keys for several, it uses TypeSafe's.
 
 | API | Key | Get one |
 |---|---|---|
 | TypeSafe | `TYPESAFE_API_KEY` | [console.typesafe.ai](https://console.typesafe.ai/settings/keys) |
 | OpenRouter | `OPENROUTER_API_KEY` | [openrouter.ai/keys](https://openrouter.ai/keys) |
+| OpenJEV | `OPENJEV_API_KEY` | [openjev.sh/dashboard](https://openjev.sh/dashboard) |
 
-Set the environment variable, or put the key in `~/.config/jev/typesafe.key` or
-`~/.config/jev/openrouter.key`. Force a choice with `--api` or `JEV_API`.
+Set the environment variable, or put the key in `~/.config/jev/typesafe.key`,
+`~/.config/jev/openrouter.key` or `~/.config/jev/openjev.key`. Force a choice with `--api` or `JEV_API`.
 
 Behind an LLM gateway that serves System One (LiteLLM, Ramp Router, a corporate proxy), point
 jgrep at it with `--api gateway`. The URL is the full endpoint and the key is the gateway's own:
